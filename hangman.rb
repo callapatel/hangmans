@@ -1,4 +1,5 @@
 require 'colorize' 
+
 class Game
   attr_accessor :word, :guess, :wrong
 
@@ -44,6 +45,7 @@ class Game
     @guess = @guess.downcase
   end
 
+
    def samesies
    	  if @word == @guess 
    	  	abort("yay! you got it! smartie") 
@@ -64,7 +66,7 @@ class Game
     if !@word.include?(@guess)
       then @wrong +=1
       puts 'wrong'
-      
+
 
     end
 
@@ -104,6 +106,30 @@ class Game
       ".green
     else
       samesies
+    elsif @wrong == 1
+      puts "
+            |     _________
+            |     |/      |
+            |     |      (_)
+      "
+    elsif @wrong == 2
+      puts "
+            |     _________
+            |     |/      |
+            |     |      (_)
+            |     |      \|/
+
+      "
+    elsif @wrong == 3
+      puts "
+          |     _________
+          |     |/      |
+          |     |      (_)
+          |     |      \|/
+          |     |       |
+
+      "
+    else
       puts "
           |     _________
           |     |/      |
