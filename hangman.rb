@@ -1,4 +1,4 @@
-require 'colorize'
+require 'colorize' 
 class Game
   attr_accessor :word, :guess, :wrong
 
@@ -34,7 +34,7 @@ class Game
   def dashes
     a = @word.length
     #b = a.to_i
-    puts "this is the no of letters:"
+    puts "here are the letters:"
     puts ('*' * a)
   end
 
@@ -44,12 +44,18 @@ class Game
     @guess = @guess.downcase
   end
 
+   def samesies
+   	  if @word == @guess 
+   	  	abort("yay! you got it! smartie") 
+   	  end 
+   end
 
   def ui
   @done << guess
   @done.join("")
   puts @word.tr("^#{@done.join("")}", '*')
-  puts "Heres a history of your guesses!"
+  puts "Heres a history of your guesses"
+  puts @done
   be_wrong
   end
 
@@ -57,48 +63,57 @@ class Game
 
     if !@word.include?(@guess)
       then @wrong +=1
-      puts 'i am wrong'
+      puts 'wrong'
+      
 
     end
 
     if @wrong == 0
-
+		puts "correct" 
+		samesies
     elsif @wrong == 1
-      puts "
-      |     _________
-      |     |/      |
-      |     |      (_)".red
-
-    elsif @wrong == 2
-      puts "
+      samesies
+      puts " 
+       
             |     _________
             |     |/      |
             |     |      (_)
-            |     |   //\_|_/
-
-      "
-    elsif @wrong == 3
+      		".red
+      
+    elsif @wrong == 2
+      samesies
       puts "
+      
           |     _________
           |     |/      |
           |     |      (_)
-          |     |      \|/
-          |     |       |
-
-      "
-    else
-      puts "
-          |     _________
-          |     |/      |
-          |     |      (_)
-          |     |      \|/
-          |     |       |
-          |     |      / \
+          |     |      \\\|/
           |     |
-          | ____|___
 
-      "
-      abort("no more playing games")
+      ".yellow
+    elsif @wrong == 3
+      samesies
+      puts "
+    
+          |     _________
+          |     |/      |
+          |     |      (_)
+          |     |      \\\|/
+          |     |       |
+          
+      ".green
+    else
+      samesies
+      puts "
+          |     _________
+          |     |/      |
+          |     |      (_)
+          |     |      \\\|/
+          |     |       |
+          |     |      / \\\
+
+      ".cyan
+      abort("no more guesses allowed")
     end
   end
 end
